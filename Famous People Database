@@ -1,0 +1,68 @@
+I made 3 tables of a small set of famous people that relate to each other by ID.
+
+CREATE TABLE singers (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT,studio_albums INTEGER, age INTEGER);
+ 
+ 
+ INSERT INTO singers(name, studio_albums, age) VALUES ("Beyonce Knowles", 7, 41);
+ INSERT INTO singers(name, studio_albums, age) VALUES ( "Chris Brown", 10, 33);
+  INSERT INTO singers(name, studio_albums, age) VALUES ("Jill Scott", 5,50);
+   INSERT INTO singers(name, studio_albums, age) VALUES ("Brandy", 7, 44);
+ INSERT INTO singers(name, studio_albums, age) VALUES ("Janet Jackson", 10, 56);
+  INSERT INTO singers(name, studio_albums, age) VALUES ("Mariah Carey", 15, 53);
+  INSERT INTO singers(name, studio_albums, age) VALUES ("Ciara", 7, 37);
+   INSERT INTO singers(name, studio_albums, age) VALUES ("Mary J. Blige", 14, 52);
+   
+   CREATE TABLE movies (id INTEGER PRIMARY KEY, popular_movie TEXT, release_year INTEGER, movies_released INTEGER);
+   
+ INSERT INTO movies VALUES (1, "Dreamgirls", 2006, 10);
+ INSERT INTO movies VALUES (2, "Stomp the Yard", 2007, 7);
+ INSERT INTO movies VALUES (3, "Why Did I Get Married", 2007, 7);
+ INSERT INTO movies VALUES (4, "Cinderella", 1997, 9);
+ INSERT INTO movies VALUES (5, "Poetic Justice", 1993, 9);
+ INSERT INTO movies VALUES (6, "The Butler", 2013, 18);
+ INSERT INTO movies VALUES (7, "All You've Got", 2006, 6);
+ INSERT INTO movies VALUES (8, "Betty and Coretta", 2013, 14);
+ 
+ CREATE TABLE fun_facts (id INTEGER PRIMARY KEY, kids INTEGER, alter_ego TEXT, partner TEXT, popular_song TEXT);
+ 
+ INSERT INTO fun_facts VALUES (1, 3, "Sasha Fierce", "Jay Z", "Irreplaceable");
+ INSERT INTO fun_facts (id, kids, alter_ego, popular_song) VALUES (2, 3, "Breezy", "Forever");
+ INSERT INTO fun_facts (id, kids, popular_song) VALUES (3, 1, "The Way");
+ 
+ INSERT INTO fun_facts (id, kids, alter_ego, popular_song) VALUES (4, 2, "B Rocka", "I Wanna Be Down");
+  INSERT INTO fun_facts(id, kids,alter_ego, popular_song) VALUES (5, 1, "Strawberry", 'Rhythm Nation');
+  INSERT INTO fun_facts VALUES (6, 2, "Bianca Storm", "Bryan Tanaka", "All I Want For Christmas Is You");
+  INSERT INTO fun_facts VALUES (7, 3, "Supa C", "Russell Wilson", "Promise");
+  
+INSERT INTO fun_facts (id, kids, alter_ego, popular_song) VALUES (8, 0, "Brook Lynn", "Just Fine");  
+  
+ How many studio albums and movies has each famous person released? 
+ SELECT singers.name, singers.studio_albums, movies.movies_released  FROM singers
+ LEFT OUTER JOIN movies
+ ON singers.id=movies.id
+ ORDER BY studio_albums desc;
+ 
+ 
+ How many kids does each artist have? Also do they have a partner? If so what is their name?
+ SELECT singers.name, fun_facts.kids, fun_facts.partner 
+ FROM singers
+ JOIN fun_facts
+ ON singers.id=fun_facts.id;
+ 
+ 
+ What is the most poplur song and movie from each artist? What is their age? Order by oldest to youngest.
+ SELECT singers.name, singers.age, movies.popular_movie, fun_facts.popular_song
+ FROM singers
+ JOIN movies
+ ON singers.id=movies.id
+ JOIN fun_facts
+ ON singers.id=fun_facts.id
+ ORDER BY age desc;
+ 
+ Filtered the data to show the singers name next to their alter ego name.
+ SELECT singers.name, fun_facts.alter_ego
+ FROM singers
+ Join fun_facts
+ ON singers.id=fun_facts.id;
+ 
+ 
