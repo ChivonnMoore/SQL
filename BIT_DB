@@ -1,3 +1,5 @@
+In this SQL, I'm querying data from multiple tables about customers and order data. 
+
 How many orders were placed in January?
 
 SELECT COUNT(orderID)
